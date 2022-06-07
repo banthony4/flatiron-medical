@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :appointments
+  resources :doctors
+  resources :patients
+  resources :departments
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post '/doclogin', to: 'sessions#doclogin'
+  delete '/logout', to: 'sessions#logout'
+  
 end

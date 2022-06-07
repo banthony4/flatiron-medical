@@ -71,6 +71,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    bcrypt (3.1.18)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -83,6 +84,8 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -169,8 +172,10 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
+  faker
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.3)
