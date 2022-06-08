@@ -5,7 +5,7 @@ class DoctorsController < ApplicationController
   end
 
   def show
-    doctor = Doctor.find_by(id: session[:current_user])
+    doctor = Doctor.find(params[:id])
     render json: doctor, status: :ok
   end
 

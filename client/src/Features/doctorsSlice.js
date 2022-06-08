@@ -5,6 +5,11 @@ export const fetchDoctors = createAsyncThunk("doctors/fetchDoctors", () => {
     .then((response) => response.json())
     .then((data) => data);
 });
+export const fetchDoctor = createAsyncThunk("doctor/fetchDoctor", (id) => {
+  return fetch(`/doctors/${id}`)
+    .then((response) => response.json())
+    .then((data) => data);
+});
 
 const doctorsSlice = createSlice({
   name: 'doctors',
@@ -20,6 +25,13 @@ const doctorsSlice = createSlice({
       state.status = 'loading';
     },
     [fetchDoctors.fulfilled](state, action) {
+      state.entities = action.payload;
+      state.status = 'idle';
+    },
+    [fetchDoctor.pending](state) {
+      state.status = 'loading';
+    },
+    [fetchDoctor.fulfilled](state, action) {
       state.entities = action.payload;
       state.status = 'idle';
     }

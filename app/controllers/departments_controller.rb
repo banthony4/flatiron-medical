@@ -6,7 +6,7 @@ class DepartmentsController < ApplicationController
 
   def show
     department = Department.find(params[:id])
-    render json: department, status: :ok
+    render json: department, serializer: DepartmentDoctorsSerializer, status: :ok
   end
 
   def create

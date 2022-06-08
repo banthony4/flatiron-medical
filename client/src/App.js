@@ -1,35 +1,32 @@
 import './App.css';
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { fetchDepartments } from './Features/departmentsSlice';
 
-import NavBar from './Components/NavBar';
-import Home from './Components/Home';
-import Login from './Components/Login';
-import Calendar from './Components/Calendar';
-import Departments from './Components/Departments';
+import NavBar from './Components/NavBar/NavBar.js';
+import Home from './Components/Home/Home.js';
+import Login from './Components/Login/Login.js';
+import Calendar from './Components/Calendar/Calendar.js';
+import Departments from './Components/Departments/Departments.js';
+import DepartmentProfile from './Components/DepartmentProfile/DepartmentProfile.js';
+import DoctorProfile from './Components/DoctorProfile/DoctorProfile';
+import Portal from './Components/Portal/Portal';
 
 function App() {
   const [user, setUser] = useState(null)
-  const departments = useSelector(state => state.departments.entities)
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchDepartments());
-  }, [dispatch]);
-
-  console.log('docs:', departments)
+  console.log('user: ', user);
+  
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} setUser={setUser} />
       <Routes>
         <Route exact path = '/' element={<Home/>}/>
-        <Route exact path = '/login' element={<Login setUser={setUser} />}/>
-        <Route exact path = '/calendar' element={<Calendar/>}/>
+        <Route path = '/login' element={<Login setUser={setUser} />}/>
+        <Route path = '/calendar' element={<Calendar/>}/>
         <Route exact path = '/departments' element={<Departments />}/>
+        <Route path = '/departments/:id' element={<DepartmentProfile />}/>
+        <Route path = '/doctors/:id' element={<DoctorProfile />}/>
+        <Route path = '/portal' element={<Portal />}/>
       </Routes>
     </div>
   );
