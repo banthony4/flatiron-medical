@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
 
-  # before_action :authorize
+  before_action :authorize
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid_response
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 

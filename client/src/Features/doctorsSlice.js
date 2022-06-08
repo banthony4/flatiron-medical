@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchDoctors = createAsyncThunk("doctors/fetchDoctors", () => {
-  // return a Promise containing the data we want
   return fetch("/doctors")
     .then((response) => response.json())
     .then((data) => data);

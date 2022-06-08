@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: :login
 
-  def doclogin
+  def login
     user = Doctor.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       session[:current_user] = user.id
