@@ -13,7 +13,6 @@ const Departments = () => {
     dispatch(fetchDepartments());
   }, [dispatch]);
 
-
   return (
     <div>
       <h1>Departments:</h1>

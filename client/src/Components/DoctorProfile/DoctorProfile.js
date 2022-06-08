@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 const DoctorProfile = () => {
   const [doc, setDoc] = useState({})
-  console.log('doc: ', doc);
   const { id } = useParams();
 
   useEffect(() => {

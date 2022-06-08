@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+
+import PortalNav from '../PortalNav/PortalNav'
 
 const Portal = () => {
+  
+  
   return (
-    <div>Portal</div>
+    <div>
+      <PortalNav />
+    </div>
   )
 }
 

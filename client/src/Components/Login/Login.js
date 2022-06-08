@@ -8,7 +8,6 @@ const Login = ({ setUser }) => {
     password: ''
   })
   
-  console.log('loginData: ', loginData);
   const navigate = useNavigate();
   
   const handleChange = (e) => {
