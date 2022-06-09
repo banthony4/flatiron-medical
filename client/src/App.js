@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAppointments } from './Features/appointmentsSlice'
+import { fetchPatients } from './Features/patientsSlice'
 
 import NavBar from './Components/NavBar/NavBar.js';
 import Home from './Components/Home/Home.js';
@@ -22,9 +23,12 @@ function App() {
   const dispatch = useDispatch();
 
   const appointments = useSelector(state => state.appointments.entities)
-  console.log('appointments: ', appointments);
   useEffect(() => {
     dispatch(fetchAppointments());
+  }, [dispatch]);
+  const patients = useSelector(state => state.patients.entities)
+  useEffect(() => {
+    dispatch(fetchPatients());
   }, [dispatch]);
   
   return (
@@ -38,7 +42,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
         <Route path = '/appointments' element={<Appts />}/>
-        <Route path = '/calendar' element={<Calendar appointments={appointments} user={user} />}/>
+        <Route path = '/calendar' element={<Calendar patients={patients} appointments={appointments} user={user} />}/>
       </Routes>
     </div>
   );
