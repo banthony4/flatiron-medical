@@ -1,4 +1,4 @@
 class DoctorSerializer < ActiveModel::Serializer
-  attributes :id, :title, :name, :bio, :email, :password_digest
-  has_one :department
+  attributes :id, :title, :name, :bio, :email
+  has_many :appointments
 end

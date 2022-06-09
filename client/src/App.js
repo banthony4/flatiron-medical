@@ -38,7 +38,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
         <Route path = '/appointments' element={<Appts />}/>
-        <Route path = '/calendar' element={<Calendar appointments={appointments}/>}/>
+        <Route path = '/calendar' element={<Calendar appointments={appointments} user={user} />}/>
       </Routes>
     </div>
   );

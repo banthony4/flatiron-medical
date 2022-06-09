@@ -1,5 +1,3 @@
 class AppointmentSerializer < ActiveModel::Serializer
-  attributes :id, :start_date, :end_date, :start_time, :end_time
-  has_one :patient
-  has_one :doctor
+  attributes :id, :startDate, :endDate, :title, :location, :doctor_id, :patient_id
 end

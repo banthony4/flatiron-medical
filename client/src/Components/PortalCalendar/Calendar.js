@@ -17,14 +17,16 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const Calendar = ({ appointments }) => {
+const Calendar = ({ appointments, user }) => {
   const [currentView, setCurrentView ] = useState('Month')
   const [currentDate, setCurrentDate ] = useState('2022-06-01')
+  const docAppointments = appointments.filter(appt => appt.docter_id === user.id)
+  console.log('docAppointments: ', docAppointments);
 
   return (
     <Paper>
         <Scheduler
-          data={appointments}
+          data={docAppointments}
           height={660}
         >
           <ViewState
