@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateAppointments, appointmentRemoved } from '../../Features/appointmentsSlice'
+import { updateAppointments, deleteAppointment, createAppointment } from '../../Features/appointmentsSlice'
 import PortalNav from '../PortalNav/PortalNav';
 
 import Paper from '@mui/material/Paper';
@@ -20,22 +20,15 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const Calendar = ({ appointments, user }) => {
+const Calendar = ({ appointments, user, rooms, patients }) => {
   const dispatch = useDispatch();
+  const docAppointments = appointments.filter(appt => appt.doctor_id === user.id)
   const [currentView, setCurrentView ] = useState('Month')
   const [currentDate, setCurrentDate ] = useState('2022-06-01')
   const [apptId, setApptId] = useState({})
   const [editedAppt, setEditedAppt] = useState({})
   
-  // const [appt, setAppt] = useState({
-    //   doctor_id: user.id,
-    //   patient_id: null,
-    //   startDate: '',
-    //   endDate: '',
-    //   title: '',
-    //   location: '',
-    // })
-  const docAppointments = appointments.filter(appt => appt.doctor_id === user.id)
+  
   
   const changeEditingAppointment = (e) => {
     if(e){
@@ -47,21 +40,70 @@ const Calendar = ({ appointments, user }) => {
   const changeAppointmentChanges = (e) => {
     setEditedAppt(e)
   }
-  const commitChanges = ({added, changed, deleted}) => {
-    console.log('commit appt',editedAppt.startDate)
-    console.log('commit id', apptId)
+  const commitChanges = ({ added, changed, deleted }) => {
     if(changed){
       const apptObj = {...editedAppt, ...apptId}
-      dispatch(updateAppointments(apptObj))
-      // .then(docAppointments.map(appt => appt.id === apptId.id ?  ))
+      console.log(changed)
+      // dispatch(updateAppointments(apptObj))
     } else if( deleted ){
-      console.log('apptId.id: ', apptId.id);
-      dispatch(appointmentRemoved(apptId.id))
-      // docAppointments.filter(appt => appt.id !== apptId.id)
+      dispatch(deleteAppointment(apptId.id))
     }else{
-      console.log('added')
+      dispatch(createAppointment({...added, ...{doctor_id: user.id}}))
     }
   }
+
+  const TextEditor = (props) => {
+    if (props.type === 'multilineTextEditor') {
+      return null;
+    } return <AppointmentForm.TextEditor {...props} />;
+  };
+
+  const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }) => {
+    const onPatientChange = (e) => {
+      onFieldChange({ patient_id: e })
+    };
+    const onDoctorChange = (e) => {
+      onFieldChange({ doctor_id: e })
+    };
+    const onNotesChange = (e) => {
+      onFieldChange({ notes: e })
+    };
+    return (
+      <AppointmentForm.BasicLayout
+        appointmentData={appointmentData}
+        onFieldChange={onFieldChange}
+        {...restProps}
+      >
+        <AppointmentForm.Label
+          text="patient_id"
+          type="title"
+        />
+        <AppointmentForm.TextEditor
+          value={appointmentData.patient_id}
+          onValueChange={onPatientChange}
+          placeholder="Patient_id"
+        />
+        <AppointmentForm.Label
+          text="doctor_id"
+          type="title"
+        />
+        <AppointmentForm.TextEditor
+          value={appointmentData.doctor_id}
+          onValueChange={onDoctorChange}
+          placeholder="doctor_id"
+        />
+        <AppointmentForm.Label
+          text="notes"
+          type="title"
+        />
+        <AppointmentForm.TextEditor
+          value={appointmentData.notes}
+          onValueChange={onNotesChange}
+          placeholder="notes"
+        />
+      </AppointmentForm.BasicLayout>
+    );
+  };
 
   return (
     <div>
@@ -98,15 +140,12 @@ const Calendar = ({ appointments, user }) => {
           <DateNavigator />
           <ViewSwitcher />
           <Appointments />
-          {/* <AppointmentTooltip
+          <AppointmentTooltip
             showOpenButton
-            showDeleteButton
-            onClick={changeEditingAppointment}
-          /> */}
-          <AppointmentForm />
-          <AppointmentForm.Label
-            text="Custom Field"
-            type="boolean"
+          />
+          <AppointmentForm 
+            basicLayoutComponent={BasicLayout}
+            textEditorComponent={TextEditor}
           />
         </Scheduler>
       </Paper>

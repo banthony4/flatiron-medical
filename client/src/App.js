@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAppointments } from './Features/appointmentsSlice'
 import { fetchPatients } from './Features/patientsSlice'
+import { fetchRooms } from './Features/roomsSlice'
 
 import NavBar from './Components/NavBar/NavBar.js';
 import Home from './Components/Home/Home.js';
@@ -26,10 +27,16 @@ function App() {
   useEffect(() => {
     dispatch(fetchAppointments());
   }, [dispatch]);
+
   const patients = useSelector(state => state.patients.entities)
   useEffect(() => {
     dispatch(fetchPatients());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch]);
+  const rooms = useSelector(state => state.rooms.entities)
   
   return (
     <div className="App">
@@ -42,7 +49,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
         <Route path = '/appointments' element={<Appts />}/>
-        <Route path = '/calendar' element={<Calendar patients={patients} appointments={appointments} user={user} />}/>
+        <Route path = '/calendar' element={<Calendar patients={patients} appointments={appointments} user={user} rooms={rooms}  />}/>
       </Routes>
     </div>
   );

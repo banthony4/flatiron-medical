@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchPatients = createAsyncThunk("patients/fetchPatients", () => {
-  return fetch("/patients")
+export const fetchRooms = createAsyncThunk("rooms/fetchRooms", () => {
+  return fetch("/rooms")
     .then((response) => response.json())
     .then((data) => data);
 });
 
-const patientsSlice = createSlice({
-  name: 'patients',
+const roomsSlice = createSlice({
+  name: 'rooms',
   initialState: {
     entities: [],
     status: 'idle'
@@ -16,14 +16,14 @@ const patientsSlice = createSlice({
 
   },
   extraReducers: {
-    [fetchPatients.pending](state) {
+    [fetchRooms.pending](state) {
       state.status = 'loading';
     },
-    [fetchPatients.fulfilled](state, action) {
+    [fetchRooms.fulfilled](state, action) {
       state.entities = action.payload;
       state.status = 'idle';
     }
   }
 })
 
-export default patientsSlice.reducer
+export default roomsSlice.reducer

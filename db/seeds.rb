@@ -45,13 +45,20 @@ puts 'Seeding patients..'
   )
 end
 
+15.times do
+  Room.create(
+    text: Faker::Movies::LordOfTheRings.location,
+    color: Faker::Color.color_name
+  )
+end
+
 puts 'Seeding appointments..'
 50.times do
   Appointment.create(
     doctor_id: 1,
     patient_id: rand(1..Patient.all.size),
     title: Faker::Fantasy::Tolkien.poem,
-    location: Faker::Movies::Hobbit.location,
+    room_id: rand(1..Room.all.size),
     startDate: DateTime.new(2022,6,rand(1..30),rand(1..19),rand(1.60)).strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)'),
     endDate: DateTime.new(2022,6,rand(1..30),rand(6..19),rand(1.60)).strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)'),
     notes: ''
