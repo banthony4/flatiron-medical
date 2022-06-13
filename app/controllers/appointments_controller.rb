@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  skip_before_action :authorize
   
   def index
     render json: Appointment.all, status: :ok
@@ -27,6 +28,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:startDate, :endDate, :title, :location, :doctor_id, :patient_id, :notes)
+    params.permit(:startDate, :endDate, :title, :location, :doctor_id, :patient_id, :notes, :id)
   end
 end

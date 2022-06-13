@@ -20,15 +20,11 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const Calendar = ({ appointments, user, rooms, patients }) => {
+const Calendar = ({ docAppointments, user }) => {
   const dispatch = useDispatch();
-  const docAppointments = appointments.filter(appt => appt.doctor_id === user.id)
   const [currentView, setCurrentView ] = useState('Month')
   const [currentDate, setCurrentDate ] = useState('2022-06-01')
   const [apptId, setApptId] = useState({})
-  const [editedAppt, setEditedAppt] = useState({})
-  
-  
   
   const changeEditingAppointment = (e) => {
     if(e){
@@ -37,18 +33,16 @@ const Calendar = ({ appointments, user, rooms, patients }) => {
       setApptId(apptId => ({...apptId, [key]: value}))
     }
   }
-  const changeAppointmentChanges = (e) => {
-    setEditedAppt(e)
-  }
+
   const commitChanges = ({ added, changed, deleted }) => {
     if(changed){
-      const apptObj = {...editedAppt, ...apptId}
-      console.log(changed)
-      // dispatch(updateAppointments(apptObj))
+      const apptObj = {...changed[apptId.id], ...apptId}
+      console.log('apptObj: ', apptObj);
+      dispatch(updateAppointments(apptObj))
     } else if( deleted ){
       dispatch(deleteAppointment(apptId.id))
     }else{
-      dispatch(createAppointment({...added, ...{doctor_id: user.id}}))
+      dispatch(createAppointment(added))
     }
   }
 
@@ -59,8 +53,9 @@ const Calendar = ({ appointments, user, rooms, patients }) => {
   };
 
   const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }) => {
+    
     const onPatientChange = (e) => {
-      onFieldChange({ patient_id: e })
+      onFieldChange({patient_id: e})
     };
     const onDoctorChange = (e) => {
       onFieldChange({ doctor_id: e })
@@ -122,15 +117,11 @@ const Calendar = ({ appointments, user, rooms, patients }) => {
           />
           <EditingState
             onCommitChanges={commitChanges}
-            // addedAppointment={addedAppointment}
-            // onAddedAppointmentChange={changeAddedAppointment}
-            // appointmentChanges={appointmentChanges}
-            onAppointmentChangesChange={changeAppointmentChanges}
             onEditingAppointmentChange={changeEditingAppointment}
           />
           <WeekView
-            startDayHour={10}
-            endDayHour={19}
+            startDayHour={5}
+            endDayHour={24}
           />
           <MonthView />
           <DayView />

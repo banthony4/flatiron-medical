@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  skip_before_action :authorize
 
   def index
     render json: Patient.all, status: :ok

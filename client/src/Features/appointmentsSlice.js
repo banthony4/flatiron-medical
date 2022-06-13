@@ -19,17 +19,17 @@ export const updateAppointments = createAsyncThunk(
     .then((res) => res.json())
   }
 );
-export const deleteAppointment = createAsyncThunk(
-  "appointment/deleteAppointment",
-  async (apptId) => {
-    fetch(`/appointments/${apptId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-);
+// export const deleteAppointment = createAsyncThunk(
+//   "appointment/deleteAppointment",
+//   async (apptId) => {
+//     fetch(`/appointments/${apptId}`, {
+//       method: "DELETE",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+//   }
+// );
 export const createAppointment = createAsyncThunk(
   "appointments/createAppointment",
   async (newAppt) => {
@@ -50,11 +50,11 @@ const appointmentsSlice = createSlice({
     status: 'idle'
   },
   reducers: {
-    // deleteAppointment(state, action){
-    //   const index = state.entities.findIndex(a => a.id === action.payload)
-    //   console.log('index: ', index);
-    //   state.entities.splice(index, 1)
-    // },
+    deleteAppointment(state, action){
+      const index = state.entities.findIndex(a => a.id === action.payload)
+      console.log('index: ', index);
+      state.entities.splice(index, 1)
+    },
     // updateAppointment(state, action) {
     //   // const index = state.entities.findIndex(a => a.id === action.payload.id)
     //   state.entities.map(appt => appt.id === action.payload.id ? {...appt, ...action.payload} : appt)
@@ -71,17 +71,17 @@ const appointmentsSlice = createSlice({
     [updateAppointments.fulfilled](state, action) {
       state.entities.map(appt => appt.id === action.payload.id ? {...appt, ...action.payload} : appt)
     },
-    [deleteAppointment.fulfilled](state, action) {
-      state.entities = state.entities.filter(
-        (appt) => appt.id !== action.payload
-      );
-    },
+    // [deleteAppointment.fulfilled](state, action) {
+    //   state.entities = state.entities.filter(
+    //     (appt) => appt.id !== action.payload
+    //   );
+    // },
     [createAppointment.fulfilled](state, action) {
       state.entities = [...state.entities, action.payload];
     },
   }
 })
 
-// export const { deleteAppointment } = appointmentsSlice.actions
+export const { deleteAppointment } = appointmentsSlice.actions
 
 export default appointmentsSlice.reducer

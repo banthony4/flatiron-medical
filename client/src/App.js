@@ -23,21 +23,16 @@ function App() {
   const [user, setUser] = useState(null)
   const dispatch = useDispatch();
 
-  const appointments = useSelector(state => state.appointments.entities)
+  const docAppointments = useSelector(state => state.appointments.entities)
   useEffect(() => {
     dispatch(fetchAppointments());
   }, [dispatch]);
 
-  const patients = useSelector(state => state.patients.entities)
-  useEffect(() => {
-    dispatch(fetchPatients());
-  }, [dispatch]);
+  // const patients = useSelector(state => state.patients.entities)
+  // useEffect(() => {
+  //   dispatch(fetchPatients());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchRooms());
-  }, [dispatch]);
-  const rooms = useSelector(state => state.rooms.entities)
-  
   return (
     <div className="App">
       <NavBar user={user} setUser={setUser} />
@@ -49,7 +44,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
         <Route path = '/appointments' element={<Appts />}/>
-        <Route path = '/calendar' element={<Calendar patients={patients} appointments={appointments} user={user} rooms={rooms}  />}/>
+        <Route path = '/calendar' element={<Calendar docAppointments={docAppointments} user={user} />}/>
       </Routes>
     </div>
   );
