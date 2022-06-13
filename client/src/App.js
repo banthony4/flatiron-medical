@@ -11,11 +11,12 @@ import { fetchRooms } from './Features/roomsSlice'
 
 import NavBar from './Components/NavBar/NavBar.js';
 import Home from './Components/Home/Home.js';
+import AboutUs from './Components/AboutUs/AboutUs.js';
 import Login from './Components/Login/Login.js';
 import Departments from './Components/Departments/Departments.js';
 import DepartmentProfile from './Components/DepartmentProfile/DepartmentProfile.js';
 import DoctorProfile from './Components/DoctorProfile/DoctorProfile';
-import Portal from './Components/Portal/Portal';
+import Portal from './Components/Portal/Portal.js';
 import Appts from './Components/PortalAppts/Appts.js'
 import Calendar from './Components/PortalCalendar/Calendar.js'
 
@@ -38,12 +39,13 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <Routes>
         <Route exact path = '/' element={<Home/>}/>
-        <Route path = '/login' element={<Login setUser={setUser} />}/>
         <Route exact path = '/departments' element={<Departments />}/>
+        <Route path = '/aboutus' element={<AboutUs  />}/>
+        <Route path = '/login' element={<Login setUser={setUser} />}/>
         <Route path = '/departments/:id' element={<DepartmentProfile />}/>
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
-        <Route path = '/appointments' element={<Appts />}/>
+        <Route path = '/appointments' element={<Appts docAppointments={docAppointments} />}/>
         <Route path = '/calendar' element={<Calendar docAppointments={docAppointments} user={user} />}/>
       </Routes>
     </div>

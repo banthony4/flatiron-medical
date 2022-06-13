@@ -15,10 +15,10 @@ const DepartmentProfile = () => {
   return (
     <div>DepartmentProfile:
       <h1>{dept.name}</h1>
-      <ol>
+      <ul>Doctors:
         {dept.doctors ? dept.doctors.map(doc => <li key={doc.id} onClick={() => navigate(`/doctors/${doc.id}`)}>{`Dr. ${doc.name}, ${doc.title}`}</li>) 
         : null}
-      </ol>
+      </ul>
     </div>
   )
 }
