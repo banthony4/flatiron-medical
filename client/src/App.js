@@ -22,6 +22,7 @@ import Calendar from './Components/PortalCalendar/Calendar.js'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const dispatch = useDispatch();
 
   const docAppointments = useSelector(state => state.appointments.entities)
@@ -33,10 +34,12 @@ function App() {
   // useEffect(() => {
   //   dispatch(fetchPatients());
   // }, [dispatch]);
-
+  const onToggleDarkMode = () => {
+    setIsDarkMode((isDarkMode) => !isDarkMode);
+  };
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode}/>
       <Routes>
         <Route exact path = '/' element={<Home/>}/>
         <Route exact path = '/departments' element={<Departments />}/>

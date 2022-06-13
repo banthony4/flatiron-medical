@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import "./NavBar.css"
 
-const NavBar = ({ user, setUser }) => {
+const NavBar = ({ user, setUser, isDarkMode, onToggleDarkMode }) => {
+  const buttonTextContent = isDarkMode ? "Light Mode" : "Dark Mode";
 
   function handleLogout(){
     fetch('/logout', {
@@ -13,17 +14,27 @@ const NavBar = ({ user, setUser }) => {
   }
 
   return (
-    <div className='NavBar'>
-      <Link to='/'>Home</Link>
-      <Link to='/departments'>Our Team</Link>
-      <Link to='/aboutus'>About Us</Link>
-      <Link to='/portal'>{user ? 'Portal' : null}</Link>
-      {user ? 
-        <Link to='/' onClick={handleLogout}>Log Out</Link>
-        :
-        <Link to='/login'>Login</Link>
-    }
-    </div>
+    <header>
+      <nav>
+        <Link to='/' style={{borderBottom: "none"}}> 
+          <h1 className="branding">
+            <span className="logo">{"//"}</span>
+            Flatiron Medical
+          </h1>
+        </Link>
+        <div className="navigation">
+          <NavLink to='/departments'>Our Team</NavLink>
+          <NavLink to='/aboutus'>About Us</NavLink>
+          <NavLink to='/portal'>{user ? 'Portal' : null}</NavLink>
+          {user ? 
+            <NavLink to='/' onClick={handleLogout}>Log Out</NavLink>
+            :
+            <NavLink to='/login'>Login</NavLink>
+          }
+          {/* <button onClick={onToggleDarkMode}>{buttonTextContent}</button> */}
+        </div>
+      </nav>
+    </header>
   )
 }
 

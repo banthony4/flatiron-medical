@@ -1,0 +1,104 @@
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.login-form-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 350px;
+  background-color: #1D1F20;
+  border: 5px solid;
+  animation: rotate 2.5s ease-in infinite;
+  border-image: 
+  linear-gradient(
+    #ff521f,
+    #dd2476,
+    #1c64ff) 1;
+  }
+@keyframes rotate {
+  50%{
+    border-image: 
+    linear-gradient(
+      #ff521f,
+      #dd2476,
+      #1c64ff
+    ) 1;
+  }
+}
+.input-group {
+  position: relative;
+}
+
+.input{
+  padding:10px;
+  border:none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: transparent;
+  outline: 2px solid #fff;
+}
+.input-label{
+  position: absolute;
+  /* left: 0; */
+  color: #d1c5fc;
+  transform: translate(10px, 10px);
+  transform-origin: left;
+  transition: transform .25s;
+}
+.input:focus~.input-label,
+.input:valid~.input-label {
+    transform: translate(0, -20px) scale(.8);
+    color: #d1c5fc;
+}
+
+.input:is(:focus, :valid) {
+    outline-color: #d1c5fc;
+}
+
+.button{
+  text-decoration: none;
+  font-size: 20px;
+  color: rgba(0,172,193,1);
+  padding: 5px 30px;
+  border: 2px solid rgba(0,172,193,1);
+  position: relative;
+  transform: translate(-50%, -50%);
+}
+
+.button::before,
+.button::after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: inherit;
+  transition: all .5s ease-in;
+}
+
+.button::before{
+  top: -15px;
+  left: -15px;
+  border-width: 2px 0 0 2px;
+}
+
+.button::after{
+  bottom: -15px;
+  right: -15px;
+  border-width: 0 2px 2px 0;
+}
+
+.button:hover::before,
+.button:hover::after{
+  width: calc(100% + 27px);
+  height: calc(100% + 27px);
+  background-color: transparent;
+}
+
+.error{
+  color: red;
+  background-color: white;
+}

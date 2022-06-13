@@ -2,15 +2,15 @@
 const sliderImages = [
   {
     title: "First Slide",
-    url: "https://images.contentstack.io/v3/assets/blt818b0c67cf450811/blt5c9bf27509865396/62850b5b1cd65960bcfed2a4/Primary_Desktop_(4).png?quality=90&auto=webp&format=pjpg&height=450",
+    url: "https://miro.medium.com/max/1200/1*ogoDbEdB4BCQJy1xmG_h1w.png",
   },
   {
     title: "Second Slide",
-    url: "https://images.contentstack.io/v3/assets/blt818b0c67cf450811/blt941a9a02028a6e13/6282a9bd6f81705517a18117/Air_Jordan_11_Low_72-10_assetsPrimary_Desktop.jpg?quality=90&auto=webp&format=pjpg&height=450",
+    url: "https://grafimedia.eu/wp-content/uploads/2018/02/Advanced-Hospital-Information-System-HIS-by-Grafimedia-SaaS-Health-IT-Experts.jpg",
   },
   {
     title: "Third Slide",
-    url:"https://images.contentstack.io/v3/assets/blt818b0c67cf450811/blt83ed196788ccc02b/6282a9bd0457495358470b5d/AJ3NeapolitanDarkMocha_Translated_Internal_Banners_Primary_Desktop.jpg?quality=90&auto=webp&format=pjpg&height=450",
+    url:"https://www.shccares.com/hubfs/Path%20367@2x.png",
   }
 ];
 

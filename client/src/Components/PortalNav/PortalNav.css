@@ -1,0 +1,5 @@
+.portal-nav {
+  padding: 1rem;
+  display: flex;
+  justify-items: start;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css'
 
 const Login = ({ setUser }) => {
   const [error, setError] = useState([])
@@ -40,18 +41,26 @@ const Login = ({ setUser }) => {
   }
   
   return (
-    <div className='login-form-box'>
-            <form onSubmit={handleSubmit}>
-                <label>Email:
-                <input type='text' name='email' onChange={handleChange} value={loginData.email}></input>
-                </label>
-                <label>Password:
-                <input type='password' name='password' onChange={handleChange} value={loginData.password}></input>
-                </label>
-                <input type="submit" value='Login'/>
-            </form>
+    <div className='login'>
+      <figure className='login-form-box'>
+        <form onSubmit={handleSubmit} className='input-group'>
+            <label for='email' className='input-label'>Email:</label>
+            <input className='input' type='text' name='email' id='email' onChange={handleChange} value={loginData.email}></input>
+            <br></br>
+            <br></br>
+            <br></br>
+            <label for='password' className='input-label'>Password:</label>
+            <input className='input' type='password' name='password' id='password' onChange={handleChange} value={loginData.password}></input>
+            <br></br>
             {error ? <p className='error'>{error}</p> : null }
-        </div>
+            <br></br>
+            <a href='#' onClick={handleSubmit} role="button" value='Login' className='button'>Login</a>
+            <br></br>
+            <br></br>
+            <br></br>
+        </form>
+      </figure>
+    </div>
   )
 }
 
