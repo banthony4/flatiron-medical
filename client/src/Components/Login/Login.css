@@ -12,21 +12,20 @@
   height: 350px;
   background-color: #1D1F20;
   border: 5px solid;
-  animation: rotate 2.5s ease-in infinite;
   border-image: 
   linear-gradient(
-    #ff521f,
-    #dd2476,
-    #1c64ff) 1;
+    #fff,
+    rgba(84,58,183,1),
+    rgba(0,172,193,1)) 1;
+  animation: 3s rotate ease-in infinite;
   }
 @keyframes rotate {
-  50%{
-    border-image: 
-    linear-gradient(
-      #ff521f,
-      #dd2476,
-      #1c64ff
-    ) 1;
+  50% {
+      border-image:
+          linear-gradient(360deg,
+              #fff,
+              rgba(84,58,183,1),
+              rgba(0,172,193,1)) 1;
   }
 }
 .input-group {
@@ -45,9 +44,9 @@
   position: absolute;
   /* left: 0; */
   color: #d1c5fc;
-  transform: translate(10px, 10px);
+  transform: translate(0px, -20px) scale(.8);
   transform-origin: left;
-  transition: transform .25s;
+  /* transition: transform .25s; */
 }
 .input:focus~.input-label,
 .input:valid~.input-label {

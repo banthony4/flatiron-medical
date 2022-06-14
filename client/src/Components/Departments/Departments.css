@@ -1,0 +1,10 @@
+.departments{
+  column-count: 3;
+  gap: 10px;
+}
+
+.dept{
+  font-size: x-large;
+  backgournd-color: grey;
+  border-radius: 10%;
+}

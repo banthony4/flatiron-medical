@@ -6,8 +6,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAppointments } from './Features/appointmentsSlice'
-import { fetchPatients } from './Features/patientsSlice'
-import { fetchRooms } from './Features/roomsSlice'
+// import { fetchPatients } from './Features/patientsSlice'
+// import { fetchRooms } from './Features/roomsSlice'
+import { fetchDepartments } from './Features/departmentsSlice.js'
 
 import NavBar from './Components/NavBar/NavBar.js';
 import Home from './Components/Home/Home.js';
@@ -30,6 +31,12 @@ function App() {
     dispatch(fetchAppointments());
   }, [dispatch]);
 
+  const departments = useSelector(state => state.departments.entities)
+  console.log('departments: ', departments);
+  useEffect(() => {
+    dispatch(fetchDepartments());
+  }, [dispatch]);
+
   // const patients = useSelector(state => state.patients.entities)
   // useEffect(() => {
   //   dispatch(fetchPatients());
@@ -42,7 +49,7 @@ function App() {
       <NavBar user={user} setUser={setUser} isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode}/>
       <Routes>
         <Route exact path = '/' element={<Home/>}/>
-        <Route exact path = '/departments' element={<Departments />}/>
+        <Route exact path = '/departments' element={<Departments departments={departments}/>}/>
         <Route path = '/aboutus' element={<AboutUs  />}/>
         <Route path = '/login' element={<Login setUser={setUser} />}/>
         <Route path = '/departments/:id' element={<DepartmentProfile />}/>
