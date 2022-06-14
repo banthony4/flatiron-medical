@@ -1,8 +1,25 @@
 .portal-nav {
-  padding: 1rem;
+  /* padding: 1rem; */
+  margin-bottom: 100px;
   display: flex;
-  flex-direction: column;
-  position: absolute;
+  justify-content: space-evenly;
+  /* position: absolute;
   left: 10%;
-  top: 50%;
+  top: 50%; */
+}
+.nav-links{
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  outline: 2px solid #fff;
+  padding: 10px 20px;
+  margin-left: 70px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  transition: color .5s;
+}
+.nav-links:hover{
+  color: rgba(84,58,183,1);
+  background-color: rgba(0,172,193,1);
 }

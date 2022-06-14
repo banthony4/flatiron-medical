@@ -1,0 +1,45 @@
+.dept-profile{
+  margin-bottom: 20px;
+}
+.dept-title{
+  margin-top: -30px;
+  text-transform: uppercase;
+}
+
+.doc-list{
+  display: flex;
+  flex-direction: column;
+  float: left;
+  text-align: left;
+  margin-left: 100px;
+}
+
+.dept-img{
+  width:800px;
+  height: 400px;
+}
+
+.doc-list h3 {
+  text-decoration: underline;
+}
+.doc-list h4{
+  display: inline-block;
+  position: relative;
+}
+.doc-list h4:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.doc-list h4:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

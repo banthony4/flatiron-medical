@@ -1,10 +1,27 @@
+.our-team{
+  margin-top: -30px;
+  margin-bottom: 100px;
+}
 .departments{
   column-count: 3;
-  gap: 10px;
+  gap: 20px;
+  column-rule-style: solid;
+  column-rule-width: 3px;
 }
 
 .dept{
-  font-size: x-large;
-  backgournd-color: grey;
-  border-radius: 10%;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  outline: 2px solid #fff;
+  padding: 10px 20px;
+  margin-left: 70px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  transition: color .5s;
+}
+.dept:hover{
+  color: rgba(84,58,183,1);
+  background-color: rgba(0,172,193,1);
 }

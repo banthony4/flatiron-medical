@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './DoctorProfile.css'
 
 
 const DoctorProfile = () => {
@@ -13,7 +14,7 @@ const DoctorProfile = () => {
   }, [id]);
 
   return (
-    <div>DoctorProfile:
+    <div>
       <h1>{`Dr. ${doc.name}, ${doc.title}`}</h1>
       <h3>{doc.bio}</h3>
       <h5>Contact: {doc.email}</h5>
