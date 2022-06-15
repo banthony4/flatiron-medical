@@ -17,7 +17,7 @@ import Departments from './Components/Departments/Departments.js';
 import DepartmentProfile from './Components/DepartmentProfile/DepartmentProfile.js';
 import DoctorProfile from './Components/DoctorProfile/DoctorProfile';
 import Portal from './Components/Portal/Portal.js';
-import Appts from './Components/PortalAppts/Appts.js'
+import PortalAppts from './Components/PortalAppts/PortalAppts.js'
 import Calendar from './Components/PortalCalendar/Calendar.js'
 
 function App() {
@@ -26,12 +26,12 @@ function App() {
   const dispatch = useDispatch();
 
   const docAppointments = useSelector(state => state.appointments.entities)
+  
   useEffect(() => {
     dispatch(fetchAppointments());
   }, [dispatch]);
 
   const departments = useSelector(state => state.departments.entities)
-  console.log('departments: ', departments);
   useEffect(() => {
     dispatch(fetchDepartments());
   }, [dispatch]);
@@ -54,7 +54,7 @@ function App() {
         <Route path = '/departments/:id' element={<DepartmentProfile />}/>
         <Route path = '/doctors/:id' element={<DoctorProfile />}/>
         <Route path = '/portal' element={<Portal />}/>
-        <Route path = '/appointments' element={<Appts docAppointments={docAppointments} />}/>
+        <Route path = '/appointments' element={<PortalAppts docAppointments={docAppointments} />}/>
         <Route path = '/calendar' element={<Calendar docAppointments={docAppointments} user={user} />}/>
       </Routes>
     </div>

@@ -44,7 +44,7 @@ puts 'Seeding patients..'
     birthdate: Faker::Date.birthday(min_age: 18, max_age: 65)
   )
 end
-
+# .strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)')
 puts 'Seeding appointments..'
 50.times do
   Appointment.create(
@@ -52,9 +52,9 @@ puts 'Seeding appointments..'
     patient_id: rand(1..Patient.all.size),
     title: Faker::Fantasy::Tolkien.poem,
     location: Faker::Movies::LordOfTheRings.location,
-    startDate: DateTime.new(2022,6,rand(1..30),rand(1..19),rand(1.60)).strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)'),
-    endDate: DateTime.new(2022,6,rand(1..30),rand(6..19),rand(1.60)).strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)'),
-    notes: ''
+    startDate: DateTime.new(2022,6,rand(1..30),rand(1..19),rand(1.60)),
+    endDate: DateTime.new(2022,6,rand(1..30),rand(6..19),rand(1.60)),
+    notes: Faker::Fantasy::Tolkien.poem
   )
 end
 puts "🌱 Seeding done..."

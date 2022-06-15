@@ -54,7 +54,7 @@ const Login = ({ setUser }) => {
             <br></br>
             {error ? <p className='error'>{error}</p> : null }
             <br></br>
-            <a href='#' onClick={handleSubmit} role="button" value='Login' className='button'>Login</a>
+            <a href='#' onClick={handleSubmit}  value='Login' className='button'>Login</a>
             <br></br>
             <br></br>
             <br></br>

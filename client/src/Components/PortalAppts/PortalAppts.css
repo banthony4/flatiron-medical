@@ -1,42 +1,46 @@
 .appt-list{
-  column-count: 3;
-  gap: 20px;
-  column-rule-style: solid;
-  column-rule-width: 3px;
+  margin-left: 400px;
 }
-.appt {
-  width : 300px; 
-  background: #d9d9d9;
-  margin : 40px auto; 
+.appt{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
 }
-
-.title {
-  padding : 30px;
-  background : #2d2f31; 
-  color : white;
-  font-size : 1.2em;
-  font-variant : small-caps;
-  cursor : pointer;
-  display: block;
+.collapsible {
+  background-color: rgba(84,58,183,1);
+  color: rgba(0,172,193,1);
+  padding: 18px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
 }
-
-.title::after {
+.hide-content {
+  /* display: block; */
+  /* padding: 0 18px;
+  color: rgba(0,172,193,1); */
+  display: none;
+  /* overflow: hidden;
+  background-color: rgba(84,58,183,1); */
+}
+.show-content {
+  margin-top: -10px;
+  text-align: left;
+  width: 92.5%;
+  padding: 0 18px;
+  color: rgba(84,58,183,1);
+  background-color: rgba(0,172,193,1);
+}
+.collapsible:after {
+  content: '\02795'; 
+  font-size: 13px;
+  color: white;
   float: right;
-  right: 10%;
-  content: "+";
+  /* margin-left: 5px; */
 }
-
-.slide {
-  clear:both;
-  width:100%;
-  height:0px;
-  overflow: hidden;
-  text-align: center;
-  transition: height .4s ease;
+.collapsible.active:after {
+  content: "\02795"; 
 }
-
-.slide li {padding : 30px;}
-
-#touch {position: absolute; opacity: 0; height: 0px;}    
-
-#touch:checked + .slide {height: 300px;} 

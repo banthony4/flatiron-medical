@@ -1,0 +1,19 @@
+.about-us{
+  margin-bottom: 50px;
+  margin-top: -50px;
+}
+.about-us img{
+  width: 65%;
+  height: 350px;
+  border-radius: 5%;
+}
+.about-us p{
+  font-size: large;
+}
+.about-us h1{
+  text-decoration: underline;
+}
+.about{
+  text-align: left;
+  margin-left: 50px;
+}

@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import "./NavBar.css"
 
 const NavBar = ({ user, setUser, isDarkMode, onToggleDarkMode }) => {
-  const buttonTextContent = isDarkMode ? "Light Mode" : "Dark Mode";
+  // const buttonTextContent = isDarkMode ? "Light Mode" : "Dark Mode";
 
   function handleLogout(){
     fetch('/logout', {
