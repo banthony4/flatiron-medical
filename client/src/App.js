@@ -7,7 +7,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAppointments } from './Features/appointmentsSlice'
 // import { fetchPatients } from './Features/patientsSlice'
-// import { fetchRooms } from './Features/roomsSlice'
 import { fetchDepartments } from './Features/departmentsSlice.js'
 
 import NavBar from './Components/NavBar/NavBar.js';

@@ -4,7 +4,6 @@ import departmentsReducer from './Features/departmentsSlice'
 import doctorsReducer from './Features/doctorsSlice'
 import patientsReducer from './Features/patientsSlice'
 import appointmentsReducer from './Features/appointmentsSlice'
-import roomsReducer from './Features/roomsSlice'
 
 const store = configureStore({
   reducer: {
@@ -12,7 +11,6 @@ const store = configureStore({
     doctors: doctorsReducer,
     patients: patientsReducer,
     appointments: appointmentsReducer,
-    rooms: roomsReducer
   },
 });
 

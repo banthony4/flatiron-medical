@@ -14,10 +14,10 @@ const NavBar = ({ user, setUser, isDarkMode, onToggleDarkMode }) => {
   }
 
   return (
-    <header>
-      <nav>
+    <header className='nav-bar'>
+      <nav className="branding">
         <Link to='/' style={{borderBottom: "none"}}> 
-          <h1 className="branding">
+          <h1>
             <span className="logo">{"//"}</span>
             Flatiron Medical
           </h1>
