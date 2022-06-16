@@ -1,0 +1,66 @@
+.patient{
+  width: 40rem;
+  margin-bottom: 10px;
+}
+.bttn {
+  background-color: rgba(84,58,183,1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgba(0,172,193,1);
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.collapsible{
+  overflow: hidden;
+}
+.expanded {
+  text-align: left;
+  margin-top: -3px;
+  width: 92.5%;
+  padding: 0 18px;
+  color: rgba(84,58,183,1);
+  background-color: rgba(0,172,193,1);
+  transition: 1s;
+}
+.collapsed {
+  margin-top: -100%;
+  transition: all 1s;
+  text-align: left;
+}
+
+.hamburger{
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  margin-top: 5px;
+}
+.line {
+  position: absolute;
+  width: 21px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: transform .5s, opacity .35s;
+}
+.line--top {
+  transform: translateY(-7px);
+}
+.line--bottom {
+  transform: translateY(7px);
+}
+
+.hamburger.cross .line--top {
+  transform: rotate(45deg);
+}
+.hamburger.cross .line--middle {
+  transform: translateX(16px);
+  opacity: 0;
+}
+.hamburger.cross .line--bottom {
+  transform: rotate(-45deg);
+}

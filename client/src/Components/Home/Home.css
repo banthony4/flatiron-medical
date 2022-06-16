@@ -1,0 +1,15 @@
+.information{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: -20px;
+  padding-bottom: 35px;
+  -webkit-mask: linear-gradient( rgba(0,0,0,1) 82%,rgba(0,0,0, 0.8) 85%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 99%);
+}
+.slide{
+  /* display: flex;
+  flex-direction: row; */
+  flex-wrap: wrap;
+  color: rgba(84,58,183,1);
+}

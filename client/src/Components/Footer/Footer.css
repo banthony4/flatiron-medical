@@ -1,0 +1,15 @@
+.footer{
+  margin-top: 200px;
+  margin-bottom: -400px;
+  padding-bottom: 50px;
+  display: flex;
+  /* position: absolute; */
+  bottom: 0;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: flex-end;
+}
+.section{
+  text-align: left;
+  color: rgba(84,58,183,1);
+}

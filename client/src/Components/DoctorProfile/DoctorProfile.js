@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import './DoctorProfile.css'
 
 
-const DoctorProfile = () => {
-  const [doc, setDoc] = useState({})
-  const { id } = useParams();
-
-  useEffect(() => {
-    fetch(`/doctors/${id}`)
-    .then(r => r.json())
-    .then((data) => setDoc(data));
-  }, [id]);
+const DoctorProfile = ({ doc }) => {
 
   return (
     <div>
-      <h1>{`Dr. ${doc.name}, ${doc.title}`}</h1>
-      <h3>{doc.bio}</h3>
-      <h5>Contact: {doc.email}</h5>
+      <h1>{`Dr. ${doc[0].name}, ${doc[0].title}`}</h1>
+      <h3>{doc[0].bio}</h3>
+      <h5>Contact: {doc[0].email}</h5>
     </div>
   )
 }

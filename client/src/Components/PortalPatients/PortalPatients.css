@@ -1,0 +1,36 @@
+.appt-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search{
+  display:flex;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: larger;
+  text-decoration: underline;
+}
+
+.patientSearch{
+  color: #fff;
+  outline: 2px solid #fff;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: large;
+  margin-left: 5px;
+  transition: background-color .5s;
+  transition: outline-color .5s;
+}
+.patientSearch::placeholder{
+  color: white;
+  transition: color .5s;
+}
+.patientSearch:focus{
+  color: rgba(84,58,183,1);
+  background-color: rgba(0,172,193,1);
+  outline-color: rgba(84,58,183,1);
+}
+.patientSearch:focus::placeholder{
+  color: rgba(84,58,183,1);
+}

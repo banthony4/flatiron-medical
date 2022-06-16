@@ -2,15 +2,19 @@
 const sliderImages = [
   {
     title: "First Slide",
-    url: "https://miro.medium.com/max/1200/1*ogoDbEdB4BCQJy1xmG_h1w.png",
+    url: "https://ak.picdn.net/shutterstock/videos/21924376/thumb/7.jpg",
   },
   {
     title: "Second Slide",
-    url: "https://grafimedia.eu/wp-content/uploads/2018/02/Advanced-Hospital-Information-System-HIS-by-Grafimedia-SaaS-Health-IT-Experts.jpg",
+    url: "https://medesol.com/wp-content/uploads/2022/04/Singapore-Nurses-Images.jpg",
   },
   {
     title: "Third Slide",
-    url:"https://www.shccares.com/hubfs/Path%20367@2x.png",
+    url:"https://www.amc.edu/aboutus/images/about_us_static_2.jpg",
+  },
+  {
+    title: "Fourth Slide",
+    url:"https://hhinternet.blob.core.windows.net/uploads/2018/10/nursing-excellence-wards-2018-feature.jpg",
   }
 ];
 

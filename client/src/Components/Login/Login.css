@@ -1,15 +1,32 @@
 .login{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+.selector{
+  margin-bottom: 40px;
+}
+.selector button{
+  width: 33%;
+  padding: 5px 30px;
+  background-color: transparent;
+  color: rgba(0,172,193,1); 
+  transition: background-color .5s;
+  border: transparent;
+  border-bottom: 2px solid rgba(0,172,193,1);
+}
+.selector button:hover{
+  background-color: rgba(84,58,183,1);
+}
+.selector > button:first-child, button:nth-child(2){
+  border-right: 2px solid rgba(0,172,193,1);
+}
+
 .login-form-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 350px;
+  width: 300px;
+  height: auto;
   background-color: #1D1F20;
   border: 5px solid;
   border-image: 
@@ -39,6 +56,9 @@
   color: #fff;
   background-color: transparent;
   outline: 2px solid #fff;
+}
+.input:focus{
+  color: rgba(0,172,193,1);
 }
 .input-label{
   position: absolute;

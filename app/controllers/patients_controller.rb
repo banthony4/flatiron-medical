@@ -2,7 +2,7 @@ class PatientsController < ApplicationController
   skip_before_action :authorize
 
   def index
-    render json: Patient.all, status: :ok
+    render json: Patient.all.order(:name), status: :ok
   end
 
   def show

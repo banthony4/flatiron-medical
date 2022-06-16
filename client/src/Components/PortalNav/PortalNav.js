@@ -1,15 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { BsFilePerson, BsCalendarPlus } from "react-icons/bs";
 import './PortalNav.css'
 
 const PortalNav = () => {
   return (
     <div className='portal-nav'>
       <div className='nav-links'>
-        <Link to='/appointments'>Appointments</Link>
-      </div>
-      <div className='nav-links'>
-        <Link to='/calendar'>Calendar</Link>
+        <NavLink to='/appointments'><BsFilePerson /> Patients</NavLink>
+        <NavLink to='/calendar'><BsCalendarPlus /> Calendar</NavLink>
       </div>
     </div>
   )

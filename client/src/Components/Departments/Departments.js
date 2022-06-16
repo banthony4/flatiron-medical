@@ -10,11 +10,11 @@ import { GrEmergency } from "react-icons/gr";
 import { IoIosBody } from "react-icons/io";
 
 
-const Departments = ({ departments }) => {
-  // console.log('departments: ', departments);
+const Departments = ({ departments, setDept }) => {
   let navigate = useNavigate();
 
   const handleClick = (dept) => {
+    setDept(departments.filter(d => d.id === dept.id))
     navigate(`/departments/${dept.id}`)
   }
 

@@ -20,8 +20,11 @@
   position: relative;
   overflow: hidden;
   transition: color .5s;
+  transition: background-color .5s;
+  transition: outline-color .5s;
 }
 .dept:hover{
   color: rgba(84,58,183,1);
   background-color: rgba(0,172,193,1);
+  outline-color: rgba(84,58,183,1);
 }
