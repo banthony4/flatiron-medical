@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :patients
   resources :departments
 
-  post '/login', to: 'sessions#login'
+  post '/doclogin', to: 'sessions#doclogin'
+  post '/patientlogin', to: 'sessions#patientlogin'
   delete '/logout', to: 'sessions#logout'
   
 end

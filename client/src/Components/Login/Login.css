@@ -68,6 +68,9 @@
   transform-origin: left;
   /* transition: transform .25s; */
 }
+.input::placeholder{
+  color: rgba(0,172,193,1);
+}
 .input:focus~.input-label,
 .input:valid~.input-label {
     transform: translate(0, -20px) scale(.8);

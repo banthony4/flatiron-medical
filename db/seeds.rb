@@ -41,7 +41,9 @@ puts 'Seeding patients..'
   Patient.create(
     name: Faker::Movies::LordOfTheRings.character,
     age: rand(18..65),
-    birthdate: Faker::Date.birthday(min_age: 18, max_age: 65)
+    birthdate: Faker::Date.birthday(min_age: 18, max_age: 65),
+    email: Faker::Internet.free_email,
+    password: Faker::Internet.password
   )
 end
 # .strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)')

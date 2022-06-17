@@ -6,6 +6,7 @@ const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [error, setError] = useState([])
   const [errors, setErrors] = useState([])
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [docLogin, setDocLogin] = useState(true)
   const [patLogin, setPatLogin] = useState(true)
   const [loginData, setLoginData] = useState({
@@ -29,10 +30,10 @@ const Login = ({ setUser }) => {
     setSignupData(signupData => ({...signupData, [name]: value}))
   }
 
-  const handleSubmit = (e) => {
+  const handleLoginSubmit = (e) => {
     e.preventDefault()
     setError([])
-    fetch('/login', {
+    fetch(docLogin ? '/doclogin' : '/patientlogin', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -53,12 +54,37 @@ const Login = ({ setUser }) => {
     })
   }
 
-  const handleSignUpSubmit = () => {
-    console.log('submit')
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    setErrors([])
+    if(confirmPassword !== signupData.password){
+      alert("Passwords dont' match!")
+    }
+
+    fetch('/patients',{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body:JSON.stringify(signupData)
+    })
+    .then(r => {
+      if(r.ok){
+        r.json()
+        .then(user => {
+          setUser(user)
+        }).then(() => navigate('/'))
+      } else{
+        r.json()
+        .then(json => setErrors(json.errors))
+      }
+    })
   }
   
   const handleDocClick = () => {
     setDocLogin(true)
+    setPatLogin(false)
   }
   const handlePatClick = () => {
     setDocLogin(false)
@@ -78,7 +104,7 @@ const Login = ({ setUser }) => {
           <button onClick={handleSignupClick}>SignUp </button>
         </div>
         {docLogin || patLogin ? 
-          <form onSubmit={handleSubmit} className='input-group'>
+          <form className='input-group'>
               <label for='email' className='input-label'>{docLogin ? 'Employee ' : 'Patient '}Email:</label>
               <input className='input' type='text' name='email' id='email' onChange={handleChange} value={loginData.email}></input>
               <br></br>
@@ -89,7 +115,7 @@ const Login = ({ setUser }) => {
               <br></br>
               {error ? <p className='error'>{error}</p> : null }
               <br></br>
-              <a href='#' onClick={handleSubmit}  value='Login' className='button'>Login</a>
+              <a href='#' onClick={handleLoginSubmit}  value='Login' className='button'>Login</a>
               <br></br>
               <br></br>
               <br></br>
@@ -105,11 +131,11 @@ const Login = ({ setUser }) => {
             <br></br>
             <br></br>
             <label className='input-label'>Age:</label>
-            <input className='input' type='text' name='age' id='email' onChange={handleSignUpChange} value={signupData.age}></input>
+            <input className='input' type='text' name='age' id='age' onChange={handleSignUpChange} value={signupData.age}></input>
             <br></br>
             <br></br>
             <label className='input-label'>Birthdate:</label>
-            <input className='input' type='text' name='birthdate' id='email' onChange={handleSignUpChange} value={signupData.birthdate}></input>
+            <input className='input' type='text' placeholder='mm/dd/yyyy' name='birthdate' id='birthdate' onChange={handleSignUpChange} value={signupData.birthdate}></input>
             <br></br>
             <br></br>
             <label for='password' className='input-label'>Password:</label>
@@ -117,7 +143,7 @@ const Login = ({ setUser }) => {
             <br></br>
             <br></br>
             <label for='password' className='input-label'>Confirm Password:</label>
-            <input className='input' type='password' name='password' id='password' onChange={handleSignUpChange} value={signupData.password}></input>
+            <input className='input' type='password' onChange={e => setConfirmPassword(e.target.value)}></input>
             {errors ? errors.map(e => <p className='error'>{e}</p> ) : null}
             <br></br>
             <br></br>
