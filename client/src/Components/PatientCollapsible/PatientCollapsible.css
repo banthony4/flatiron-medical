@@ -3,17 +3,34 @@
   margin-bottom: 10px;
 }
 .bttn {
-  background-color: rgba(84,58,183,1);
+  background-color: transparent;
+  color: white;
+  border: 2px solid #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: rgba(0,172,193,1);
   padding: 18px;
   width: 100%;
-  border: none;
   text-align: left;
-  outline: none;
-  font-size: 15px;
+  font-size: 20px;
+  transition: background-color .5s;
+  flex-wrap: wrap;
+}
+.bttn:hover{
+  background-color: rgba(84,58,183,1);
+  color: white;
+}
+.bttn-clicked{
+  background-color: rgba(84,58,183,1);
+  color: white;
+  border: 2px solid #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
 }
 .collapsible{
   overflow: hidden;
@@ -23,10 +40,17 @@
   margin-top: -3px;
   width: 92.5%;
   padding: 0 18px;
-  color: rgba(84,58,183,1);
-  background-color: rgba(0,172,193,1);
+  color: white;
+  background-color: rgba(84,58,183,1);
   transition: 1s;
+  border: 2px solid #fff;
+  padding-bottom: 5px;
 }
+.expanded h3{
+  margin-bottom: -1px;
+  text-decoration: underline;
+}
+
 .collapsed {
   margin-top: -100%;
   transition: all 1s;

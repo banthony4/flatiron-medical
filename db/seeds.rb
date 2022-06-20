@@ -14,36 +14,40 @@ Department.create(name: 'Vascular', image: 'https://www.mayoclinic.org/-/media/k
 Department.create(name: 'Neurology', image: 'https://www.amc.edu/patient/services/neurosciences/neurology/images/neuro.jpg')
 
 puts 'Seeding doctors..'
-Doctor.create(title: 'MD', name: 'Patch Adams', bio: Faker::Movies::Hobbit.quote, department_id: 10, email: 'patchadams@flatironmed.edu', password: '123')
-25.times do
+Doctor.create(title: 'MD', name: 'Patch Adams', bio: Faker::Movies::Hobbit.quote, department_id: 10, email: 'patchadams@flatironmed.edu', password: '123', doc: true)
+15.times do
   Doctor.create(
     title: 'MD',
     name: Faker::Movies::LordOfTheRings.character,
     bio: Faker::Movies::Hobbit.quote,
     department_id: rand(1..Department.all.size),
     email: "#{Faker::Internet.username}@flatironmed.edu",
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    doc: true
   )
 end
-25.times do
+15.times do
   Doctor.create(
     title: 'DO',
     name:Faker::Movies::LordOfTheRings.character,
     bio: Faker::Movies::Hobbit.quote,
     department_id: rand(1..Department.all.size),
     email: "#{Faker::Internet.username}@flatironmed.edu",
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    doc: true
   )
 end
 
 puts 'Seeding patients..'
-75.times do
+Patient.create(name: "Ben Anthony", age: rand(18..65), birthdate: Faker::Date.birthday(min_age: 18, max_age: 65), email: "ba1@gmail.com", password: "123", doc: false)
+50.times do
   Patient.create(
     name: Faker::Movies::LordOfTheRings.character,
     age: rand(18..65),
     birthdate: Faker::Date.birthday(min_age: 18, max_age: 65),
     email: Faker::Internet.free_email,
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    doc: false
   )
 end
 # .strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)')

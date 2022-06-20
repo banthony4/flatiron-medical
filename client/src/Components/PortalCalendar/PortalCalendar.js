@@ -20,7 +20,7 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const Calendar = ({ docAppointments, user }) => {
+const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
   const dispatch = useDispatch();
   const [currentView, setCurrentView ] = useState('Month')
   const [currentDate, setCurrentDate ] = useState('2022-06-01')
@@ -102,8 +102,9 @@ const Calendar = ({ docAppointments, user }) => {
 
   return (
     <div>
-    <PortalNav />
-    <Paper>
+    <PortalNav user={user} />
+    {user.doc ? 
+      <Paper>
         <Scheduler
           data={docAppointments}
           height={660}
@@ -140,8 +141,47 @@ const Calendar = ({ docAppointments, user }) => {
           />
         </Scheduler>
       </Paper>
+    :
+      <Paper>
+        <Scheduler
+          data={patientAppts}
+          height={660}
+          startDate={'string'}
+        >
+          <ViewState
+            currentDate={currentDate}
+            onCurrentDateChange={(currentDate) => setCurrentDate(currentDate)}
+            currentViewName={currentView}
+            onCurrentViewNameChange={(currentView) => setCurrentView(currentView)}
+          />
+          <EditingState
+            onCommitChanges={commitChanges}
+            onEditingAppointmentChange={changeEditingAppointment}
+          />
+          <WeekView
+            startDayHour={5}
+            endDayHour={24}
+          />
+          <MonthView />
+          <DayView />
+          <EditRecurrenceMenu />
+          <ConfirmationDialog />
+          <Toolbar />
+          <DateNavigator />
+          <ViewSwitcher />
+          <Appointments />
+          <AppointmentTooltip
+            showOpenButton
+          />
+          <AppointmentForm 
+            basicLayoutComponent={BasicLayout}
+            textEditorComponent={TextEditor}
+          />
+        </Scheduler>
+      </Paper>
+    }
     </div>
   )
 }
 
-export default Calendar;
+export default PortalCalendar;

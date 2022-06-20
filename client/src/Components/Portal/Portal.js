@@ -2,12 +2,12 @@ import React from 'react';
 
 import PortalNav from '../PortalNav/PortalNav'
 
-const Portal = () => {
+const Portal = ({ user }) => {
   
   
   return (
     <div>
-      <PortalNav />
+      <PortalNav user={user} />
     </div>
   )
 }

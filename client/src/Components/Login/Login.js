@@ -8,7 +8,7 @@ const Login = ({ setUser }) => {
   const [errors, setErrors] = useState([])
   const [confirmPassword, setConfirmPassword] = useState('')
   const [docLogin, setDocLogin] = useState(true)
-  const [patLogin, setPatLogin] = useState(true)
+  const [patLogin, setPatLogin] = useState(false)
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -85,6 +85,7 @@ const Login = ({ setUser }) => {
   const handleDocClick = () => {
     setDocLogin(true)
     setPatLogin(false)
+
   }
   const handlePatClick = () => {
     setDocLogin(false)
@@ -99,9 +100,9 @@ const Login = ({ setUser }) => {
     <div className='login'>
       <figure className='login-form-box'>
         <div className='selector'>
-          <button onClick={handleDocClick}>Doctor</button>
-          <button onClick={handlePatClick}>Patient</button>
-          <button onClick={handleSignupClick}>SignUp </button>
+          <button className={docLogin ? 'active' : null} onClick={handleDocClick}>Doctor</button>
+          <button className={patLogin ? 'active' : null} onClick={handlePatClick}>Patient</button>
+          <button className={docLogin || patLogin ? null : 'active'} onClick={handleSignupClick}>SignUp </button>
         </div>
         {docLogin || patLogin ? 
           <form className='input-group'>

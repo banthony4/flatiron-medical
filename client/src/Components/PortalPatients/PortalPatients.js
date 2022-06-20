@@ -1,9 +1,9 @@
 import React from 'react'
 import PortalNav from '../PortalNav/PortalNav'
-import Collapsible from '../Collapsible/Collapsible.js'
+import PatientCollapsible from '../PatientCollapsible/PatientCollapsible.js'
 import './PortalPatients.css'
 
-function PortalAppts({ search, setSearch, patients, docAppointments }) { 
+function PortalAppts({ search, setSearch, patients, docAppointments, user }) { 
 
   const handleChange = (e) => {
     setSearch(e.target.value)
@@ -11,7 +11,7 @@ function PortalAppts({ search, setSearch, patients, docAppointments }) {
 
   return (
     <div>
-      <PortalNav />
+      <PortalNav user={user} />
       <div className='search'>
         <label>
           Search Patient:
@@ -22,7 +22,7 @@ function PortalAppts({ search, setSearch, patients, docAppointments }) {
       <div className='appt-list' >
       { patients.map(p => {
         return (
-          <Collapsible key={p.id} patient={p} docAppointments={docAppointments} />
+          <PatientCollapsible key={p.id} patient={p} docAppointments={docAppointments} />
         )
       }) }
       </div>

@@ -9,8 +9,8 @@
   margin-bottom: 40px;
 }
 .selector button{
-  width: 33%;
-  padding: 5px 30px;
+  width: 33.33%;
+  padding: 10px;
   background-color: transparent;
   color: rgba(0,172,193,1); 
   transition: background-color .5s;
@@ -18,7 +18,8 @@
   border-bottom: 2px solid rgba(0,172,193,1);
 }
 .selector button:hover{
-  background-color: rgba(84,58,183,1);
+  color: white;
+  background-color: rgba(0,172,193,1);
 }
 .selector > button:first-child, button:nth-child(2){
   border-right: 2px solid rgba(0,172,193,1);
@@ -123,4 +124,9 @@
 .error{
   color: red;
   background-color: white;
+}
+
+.selector .active{
+  color: white;
+  background-color: rgba(0,172,193,1);
 }
