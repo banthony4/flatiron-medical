@@ -27,21 +27,25 @@ import Footer from './Components/Footer/Footer.js'
 
 function App() {
   const [user, setUser] = useState(null)
-  // const [isDarkMode, setIsDarkMode] = useState(true);
   const [search, setSearch] = useState('')
   const [dept, setDept] = useState(null)
   const [doc, setDoc] = useState(null)
   const [patientAppts, setPatientAppts] = useState([])
+  const [patientNames, setPatientNames] = useState([])
   const dispatch = useDispatch();
 
   const docAppointments = useSelector(state => state.appointments.entities)
   useEffect(() => {
     dispatch(fetchAppointments());
   }, [dispatch]);
+  
   useEffect(() => {
     if(user && !user.doc){
       setPatientAppts(docAppointments.filter(appt => appt.patient_id === user.id))
     } 
+    if(user && user.doc){
+      setPatientNames(patients.map(p => ({id: p.id, text: p.name})))
+    }
   },[user])
 
   const departments = useSelector(state => state.departments.entities)
@@ -63,11 +67,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchResults());
   }, [dispatch]);
-  
-  
-  // const onToggleDarkMode = () => {
-  //   setIsDarkMode((isDarkMode) => !isDarkMode);
-  // };
   
   const filterPatients = () => {
     if(search === '' ){
@@ -91,7 +90,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile doc={doc} />}/>
         <Route path = '/portal' element={<Portal user={user} />}/>
         <Route path = '/portal/patients' element={<PortalPatients patients={filterPatients()} docAppointments={docAppointments} search={search} setSearch={setSearch} user={user} />}/>
-        <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} patients={patients} />}/>
+        <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} patients={patients} patientNames={patientNames} />}/>
         <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
         <Route path='/portal/labresults' element={<PortalLabResults user={user} results={results} /> } />
       </Routes>

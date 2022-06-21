@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:doclogin, :patientlogin]
+  skip_before_action :is_doc, only: [:doclogin, :patientlogin]
 
   def doclogin
     user = Doctor.find_by(email: params[:email])

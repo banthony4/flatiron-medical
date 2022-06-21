@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
-  before_action :is_doc, only: [:create, :update, :destroy]
-  
+  skip_before_action :is_doc, only: [:index]
+  skip_before_action :authorize, only: [:index]
+
   def index
     render json: Appointment.all.order(:startDate), status: :ok
   end

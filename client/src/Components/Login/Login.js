@@ -18,6 +18,8 @@ const Login = ({ setUser }) => {
     email: '',
     password: '',
     birthdate: '',
+    age: '',
+    doc: false
   })
   
   
@@ -60,7 +62,6 @@ const Login = ({ setUser }) => {
     if(confirmPassword !== signupData.password){
       alert("Passwords dont' match!")
     }
-
     fetch('/patients',{
       method:'POST',
       headers:{
@@ -85,15 +86,20 @@ const Login = ({ setUser }) => {
   const handleDocClick = () => {
     setDocLogin(true)
     setPatLogin(false)
-
+    setLoginData({email: '', password: ''})
+    setError([])
   }
   const handlePatClick = () => {
     setDocLogin(false)
     setPatLogin(true)
+    setLoginData({email: '', password: ''})
+    setError([])
   }
   const handleSignupClick = () => {
     setDocLogin(false)
     setPatLogin(false)
+    setLoginData({name: '', email: '', password: '', birthdate: ''})
+    setErrors([])
   }
 
   return (
@@ -106,12 +112,12 @@ const Login = ({ setUser }) => {
         </div>
         {docLogin || patLogin ? 
           <form className='input-group' onSubmit={handleLoginSubmit}>
-              <label for='email' className='input-label'>{docLogin ? 'Employee ' : 'Patient '}Email:</label>
+              <label className='input-label'>{docLogin ? 'Employee ' : 'Patient '}Email:</label>
               <input className='input' type='text' name='email' id='email' onChange={handleChange} value={loginData.email}></input>
               <br></br>
               <br></br>
               <br></br>
-              <label for='password' className='input-label'>Password:</label>
+              <label className='input-label'>Password:</label>
               <input className='input' type='password' name='password' id='password' onChange={handleChange} value={loginData.password}></input>
               <br></br>
               {error ? <p className='error'>{error}</p> : null }
@@ -122,7 +128,7 @@ const Login = ({ setUser }) => {
               <br></br>
           </form>
         :
-          <form className='input-group' onSubmit={handleSignUpSubmit}>
+          <form className='input-group' >
             <label className='input-label'>Name:</label>
             <input className='input' type='text' name='name' id='name' onChange={handleSignUpChange} value={signupData.name}></input>
             <br></br>
@@ -139,11 +145,11 @@ const Login = ({ setUser }) => {
             <input className='input' type='text' placeholder='mm/dd/yyyy' name='birthdate' id='birthdate' onChange={handleSignUpChange} value={signupData.birthdate}></input>
             <br></br>
             <br></br>
-            <label for='password' className='input-label'>Password:</label>
+            <label className='input-label'>Password:</label>
             <input className='input' type='password' name='password' id='password' onChange={handleSignUpChange} value={signupData.password}></input>
             <br></br>
             <br></br>
-            <label for='password' className='input-label'>Confirm Password:</label>
+            <label className='input-label'>Confirm Password:</label>
             <input className='input' type='password' onChange={e => setConfirmPassword(e.target.value)}></input>
             {errors ? errors.map(e => <p className='error'>{e}</p> ) : null}
             <br></br>

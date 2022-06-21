@@ -20,12 +20,12 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const PortalCalendar = ({ docAppointments, user, patientAppts, patients }) => {
+const PortalCalendar = ({ docAppointments, user, patientAppts, patients, patientNames }) => {
   const dispatch = useDispatch();
   const [currentView, setCurrentView ] = useState('Month')
   const [currentDate, setCurrentDate ] = useState('2022-06-21')
   const [apptId, setApptId] = useState({})
-  const patientNames = patients.map(p => ({id: p.id, text: p.name}))
+
 
   const changeEditingAppointment = (e) => {
     if(e){

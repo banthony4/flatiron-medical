@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import "./NavBar.css"
 
-const NavBar = ({ user, setUser, isDarkMode, onToggleDarkMode }) => {
-  // const buttonTextContent = isDarkMode ? "Light Mode" : "Dark Mode";
+const NavBar = ({ user, setUser }) => {
 
   function handleLogout(){
     fetch('/logout', {
@@ -29,9 +28,8 @@ const NavBar = ({ user, setUser, isDarkMode, onToggleDarkMode }) => {
           {user ? 
             <NavLink to='/' onClick={handleLogout}>Log Out</NavLink>
             :
-            <NavLink to='/login'>Login</NavLink>
+            <NavLink to='/login'>Login/Sign Up</NavLink>
           }
-          {/* <button onClick={onToggleDarkMode}>{buttonTextContent}</button> */}
         </div>
       </nav>
     </header>

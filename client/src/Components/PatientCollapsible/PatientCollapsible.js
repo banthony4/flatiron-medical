@@ -31,7 +31,7 @@ const PatientCollapsible = ({ patient, docAppointments}) => {
                 <li>Notes: {appt.notes}</li>
               </ul>
             )
-          } 
+          }
         })}
       </div>
     </div>
