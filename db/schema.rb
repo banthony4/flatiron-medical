@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_162243) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_134507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_162243) do
     t.boolean "doc"
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer "WBC"
+    t.integer "RBC"
+    t.integer "hemoglobin"
+    t.integer "hematocrit"
+    t.integer "platelets"
+    t.integer "sodium"
+    t.integer "potassium"
+    t.integer "bun"
+    t.integer "calcium"
+    t.bigint "patient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_results_on_patient_id"
+  end
+
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
   add_foreign_key "doctors", "departments"
+  add_foreign_key "results", "patients"
 end

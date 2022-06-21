@@ -40,7 +40,7 @@ end
 
 puts 'Seeding patients..'
 Patient.create(name: "Ben Anthony", age: rand(18..65), birthdate: Faker::Date.birthday(min_age: 18, max_age: 65), email: "ba1@gmail.com", password: "123", doc: false)
-50.times do
+30.times do
   Patient.create(
     name: Faker::Movies::LordOfTheRings.character,
     age: rand(18..65),
@@ -52,7 +52,7 @@ Patient.create(name: "Ben Anthony", age: rand(18..65), birthdate: Faker::Date.bi
 end
 # .strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)')
 puts 'Seeding appointments..'
-50.times do
+75.times do
   Appointment.create(
     doctor_id: 1,
     patient_id: rand(1..Patient.all.size),
@@ -61,6 +61,22 @@ puts 'Seeding appointments..'
     startDate: DateTime.new(2022,6,rand(1..30),rand(1..19),rand(1.60)),
     endDate: DateTime.new(2022,6,rand(1..30),rand(6..19),rand(1.60)),
     notes: Faker::Fantasy::Tolkien.poem
+  )
+end
+
+puts 'Seeding results..'
+80.times do 
+  Result.create(
+    WBC: rand(3.5..10.5),
+    RBC: rand(4.5..6.0),
+    hemoglobin: rand(14.0..18.0),
+    hematocrit: rand(42.0..52.0),
+    platelets: rand(140..415),
+    sodium: rand(134..144),
+    potassium: rand(3.5..5.2),
+    bun: rand(9..20),
+    calcium: rand(8.7-10.2),
+    patient_id: rand(1..Patient.all.size),
   )
 end
 puts "🌱 Seeding done..."
