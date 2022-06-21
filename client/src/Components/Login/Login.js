@@ -105,7 +105,7 @@ const Login = ({ setUser }) => {
           <button className={docLogin || patLogin ? null : 'active'} onClick={handleSignupClick}>SignUp </button>
         </div>
         {docLogin || patLogin ? 
-          <form className='input-group'>
+          <form className='input-group' onSubmit={handleLoginSubmit}>
               <label for='email' className='input-label'>{docLogin ? 'Employee ' : 'Patient '}Email:</label>
               <input className='input' type='text' name='email' id='email' onChange={handleChange} value={loginData.email}></input>
               <br></br>
@@ -122,7 +122,7 @@ const Login = ({ setUser }) => {
               <br></br>
           </form>
         :
-          <form className='input-group'>
+          <form className='input-group' onSubmit={handleSignUpSubmit}>
             <label className='input-label'>Name:</label>
             <input className='input' type='text' name='name' id='name' onChange={handleSignUpChange} value={signupData.name}></input>
             <br></br>

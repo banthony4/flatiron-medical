@@ -27,7 +27,7 @@ import Footer from './Components/Footer/Footer.js'
 
 function App() {
   const [user, setUser] = useState(null)
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // const [isDarkMode, setIsDarkMode] = useState(true);
   const [search, setSearch] = useState('')
   const [dept, setDept] = useState(null)
   const [doc, setDoc] = useState(null)
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} isDarkMode={isDarkMode} />
+      <NavBar user={user} setUser={setUser} />
       <Routes>
         <Route exact path = '/' element={<Home/>}/>
         <Route exact path = '/departments' element={<Departments departments={departments} setDept={setDept} />}/>
@@ -91,7 +91,7 @@ function App() {
         <Route path = '/doctors/:id' element={<DoctorProfile doc={doc} />}/>
         <Route path = '/portal' element={<Portal user={user} />}/>
         <Route path = '/portal/patients' element={<PortalPatients patients={filterPatients()} docAppointments={docAppointments} search={search} setSearch={setSearch} user={user} />}/>
-        <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} />}/>
+        <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} patients={patients} />}/>
         <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
         <Route path='/portal/labresults' element={<PortalLabResults user={user} results={results} /> } />
       </Routes>

@@ -54,7 +54,7 @@
   padding:10px;
   border:none;
   border-radius: 4px;
-  color: #fff;
+  color: rgba(0,172,193,1);
   background-color: transparent;
   outline: 2px solid #fff;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateAppointments, deleteAppointment, createAppointment } from '../../Features/appointmentsSlice'
+import { updateBEAppointment, updateFEAppointment, deleteBEAppointment, deleteFEAppointment, createAppointment } from '../../Features/appointmentsSlice'
 import PortalNav from '../PortalNav/PortalNav';
 
 import Paper from '@mui/material/Paper';
@@ -20,12 +20,13 @@ import {
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
+const PortalCalendar = ({ docAppointments, user, patientAppts, patients }) => {
   const dispatch = useDispatch();
   const [currentView, setCurrentView ] = useState('Month')
-  const [currentDate, setCurrentDate ] = useState('2022-06-01')
+  const [currentDate, setCurrentDate ] = useState('2022-06-21')
   const [apptId, setApptId] = useState({})
-  
+  const patientNames = patients.map(p => ({id: p.id, text: p.name}))
+
   const changeEditingAppointment = (e) => {
     if(e){
       const key = Object.keys(e)[0]
@@ -37,12 +38,14 @@ const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
   const commitChanges = ({ added, changed, deleted }) => {
     if(changed){
       const apptObj = {...changed[apptId.id], ...apptId}
-      console.log('apptObj: ', apptObj);
-      dispatch(updateAppointments(apptObj))
+      dispatch(updateBEAppointment(apptObj)) //To update both front end and back end I had to create to seperate functions in the appointmentsSlice component, one is a reducer in the createSlice() method the other is an extra reducer using a traditional fetch. This was only way for the updates to both render in the front end and persist in the backend. 
+      dispatch(updateFEAppointment(apptObj))
     } else if( deleted ){
-      dispatch(deleteAppointment(apptId.id))
+      dispatch(deleteFEAppointment(apptId.id)) //same reasoning as above
+      dispatch(deleteBEAppointment(apptId.id))
     }else{
-      dispatch(createAppointment(added))
+      const apptObj = {...added, ...{doctor_id: user.id}}
+      dispatch(createAppointment(apptObj))
     }
   }
 
@@ -53,12 +56,9 @@ const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
   };
 
   const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }) => {
-    
     const onPatientChange = (e) => {
-      onFieldChange({patient_id: e})
-    };
-    const onDoctorChange = (e) => {
-      onFieldChange({ doctor_id: e })
+      onFieldChange({ patient_id: e })
+
     };
     const onNotesChange = (e) => {
       onFieldChange({ notes: e })
@@ -70,26 +70,19 @@ const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
         {...restProps}
       >
         <AppointmentForm.Label
-          text="patient_id"
+          text="patient"
           type="title"
         />
-        <AppointmentForm.TextEditor
+        <AppointmentForm.Select
           value={appointmentData.patient_id}
           onValueChange={onPatientChange}
-          placeholder="Patient_id"
+          availableOptions={patientNames}
+          selectOption="text"
+          type="filled"
         />
         <AppointmentForm.Label
-          text="doctor_id"
           type="title"
-        />
-        <AppointmentForm.TextEditor
-          value={appointmentData.doctor_id}
-          onValueChange={onDoctorChange}
-          placeholder="doctor_id"
-        />
-        <AppointmentForm.Label
-          text="notes"
-          type="title"
+          text="patient"
         />
         <AppointmentForm.TextEditor
           value={appointmentData.notes}
@@ -107,7 +100,7 @@ const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
       <Paper>
         <Scheduler
           data={docAppointments}
-          height={660}
+          height={700}
           startDate={'string'}
         >
           <ViewState
