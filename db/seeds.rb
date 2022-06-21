@@ -52,7 +52,7 @@ Patient.create(name: "Ben Anthony", age: rand(18..65), birthdate: Faker::Date.bi
 end
 # .strftime('%a %b %d %Y %H:%M:%S GMT-0400 (Eastern Daylight Time)')
 puts 'Seeding appointments..'
-75.times do
+65.times do
   Appointment.create(
     doctor_id: 1,
     patient_id: rand(1..Patient.all.size),
@@ -65,7 +65,7 @@ puts 'Seeding appointments..'
 end
 
 puts 'Seeding results..'
-80.times do 
+5.times do 
   Result.create(
     WBC: rand(3.5..10.5),
     RBC: rand(4.5..6.0),
@@ -76,7 +76,8 @@ puts 'Seeding results..'
     potassium: rand(3.5..5.2),
     bun: rand(9..20),
     calcium: rand(8.7-10.2),
-    patient_id: rand(1..Patient.all.size),
+    patient_id: 1,
+    test_date: DateTime.new(2022,6,rand(1..30),rand(1..19),rand(1.60))
   )
 end
 puts "🌱 Seeding done..."

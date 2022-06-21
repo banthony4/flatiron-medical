@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
-  skip_before_action :authorize
-
+  before_action :is_doc
+  
   def index
     render json: Patient.all.order(:name), status: :ok
   end
@@ -13,18 +13,6 @@ class PatientsController < ApplicationController
   def create
     render json: Patient.create!(patient_params), status: :created
   end
-
-  def update
-    patient = Patient.find(params[:id])
-    render json: patient.update!(patient_params), status: :created
-  end
-
-  def destroy
-    patient = Patient.find(params[:id])
-    patient.destroy
-    head :no_content
-  end
-
   private
 
   def patient_params

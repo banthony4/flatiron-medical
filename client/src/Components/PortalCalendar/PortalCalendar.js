@@ -148,35 +148,24 @@ const PortalCalendar = ({ docAppointments, user, patientAppts }) => {
           height={660}
           startDate={'string'}
         >
-          <ViewState
-            currentDate={currentDate}
-            onCurrentDateChange={(currentDate) => setCurrentDate(currentDate)}
-            currentViewName={currentView}
-            onCurrentViewNameChange={(currentView) => setCurrentView(currentView)}
-          />
-          <EditingState
-            onCommitChanges={commitChanges}
-            onEditingAppointmentChange={changeEditingAppointment}
-          />
-          <WeekView
-            startDayHour={5}
-            endDayHour={24}
-          />
-          <MonthView />
-          <DayView />
-          <EditRecurrenceMenu />
-          <ConfirmationDialog />
-          <Toolbar />
-          <DateNavigator />
-          <ViewSwitcher />
-          <Appointments />
-          <AppointmentTooltip
-            showOpenButton
-          />
-          <AppointmentForm 
-            basicLayoutComponent={BasicLayout}
-            textEditorComponent={TextEditor}
-          />
+        <ViewState
+          currentDate={currentDate}
+          onCurrentDateChange={(currentDate) => setCurrentDate(currentDate)}
+          currentViewName={currentView}
+          onCurrentViewNameChange={(currentView) => setCurrentView(currentView)}
+        />
+        <WeekView
+          startDayHour={5}
+          endDayHour={24}
+        />
+        <MonthView />
+        <DayView />
+        <Toolbar />
+        <DateNavigator />
+        <ViewSwitcher />
+        <Appointments />
+        <AppointmentTooltip
+        />
         </Scheduler>
       </Paper>
     }

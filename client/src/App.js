@@ -9,6 +9,7 @@ import { fetchAppointments } from './Features/appointmentsSlice'
 import { fetchPatients } from './Features/patientsSlice'
 import { fetchDepartments } from './Features/departmentsSlice.js'
 import { fetchDoctors } from './Features/doctorsSlice.js'
+import { fetchResults } from './Features/resultsSlice.js'
 
 import NavBar from './Components/NavBar/NavBar.js';
 import Home from './Components/Home/Home.js';
@@ -26,7 +27,6 @@ import Footer from './Components/Footer/Footer.js'
 
 function App() {
   const [user, setUser] = useState(null)
-  console.log('user: ', user);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [search, setSearch] = useState('')
   const [dept, setDept] = useState(null)
@@ -53,11 +53,17 @@ function App() {
   useEffect(() => {
     dispatch(fetchPatients());
   }, [dispatch]);
-  
+
   const doctors = useSelector(state => state.doctors.entities)
   useEffect(() => {
     dispatch(fetchDoctors());
   }, [dispatch]);
+
+  const results = useSelector(state => state.results.entities)
+  useEffect(() => {
+    dispatch(fetchResults());
+  }, [dispatch]);
+  
   
   // const onToggleDarkMode = () => {
   //   setIsDarkMode((isDarkMode) => !isDarkMode);
@@ -87,7 +93,7 @@ function App() {
         <Route path = '/portal/patients' element={<PortalPatients patients={filterPatients()} docAppointments={docAppointments} search={search} setSearch={setSearch} user={user} />}/>
         <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} />}/>
         <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
-        <Route path='/portal/labresults' element={<PortalLabResults user={user} /> } />
+        <Route path='/portal/labresults' element={<PortalLabResults user={user} results={results} /> } />
       </Routes>
       <Footer />
     </div>

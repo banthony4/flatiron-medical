@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :results
+  resources :results, only: [:index]
   resources :appointments
-  resources :doctors
-  resources :patients
-  resources :departments
+  resources :doctors, only: [:index, :show]
+  resources :patients, only: [:index, :show, :create]
+  resources :departments, only: [:index]
 
   post '/doclogin', to: 'sessions#doclogin'
   post '/patientlogin', to: 'sessions#patientlogin'
