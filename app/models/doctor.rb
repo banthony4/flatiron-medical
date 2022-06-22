@@ -11,7 +11,7 @@ class Doctor < ApplicationRecord
 
   def permitted_emails
       unless email.match?(/flatironmed.edu/)
-          errors.add(:permitted_emails, "Must have a Flatiron Med email.")
+          errors.add(:permitted_emails, ": Must have a Flatiron Med email.")
       end
   end 
 end

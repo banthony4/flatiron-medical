@@ -3,10 +3,9 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 
-
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAppointments } from './Features/appointmentsSlice'
-import { fetchPatients } from './Features/patientsSlice'
+import { fetchAppointments } from './Features/appointmentsSlice.js'
+import { fetchPatients } from './Features/patientsSlice.js'
 import { fetchDepartments } from './Features/departmentsSlice.js'
 import { fetchDoctors } from './Features/doctorsSlice.js'
 import { fetchResults } from './Features/resultsSlice.js'
@@ -33,12 +32,15 @@ function App() {
   const [patientAppts, setPatientAppts] = useState([])
   const [patientNames, setPatientNames] = useState([])
   const dispatch = useDispatch();
-
-  const docAppointments = useSelector(state => state.appointments.entities)
-  useEffect(() => {
-    dispatch(fetchAppointments());
-  }, [dispatch]);
   
+  useEffect(() => {
+    dispatch(fetchAppointments())
+    .then(dispatch(fetchDepartments()))
+    .then(dispatch(fetchPatients()))
+    .then(dispatch(fetchDoctors()))
+    .then(dispatch(fetchResults()))
+  }, [dispatch]);
+
   useEffect(() => {
     if(user && !user.doc){
       setPatientAppts(docAppointments.filter(appt => appt.patient_id === user.id))
@@ -47,32 +49,17 @@ function App() {
       setPatientNames(patients.map(p => ({id: p.id, text: p.name})))
     }
   },[user])
-
-  const departments = useSelector(state => state.departments.entities)
-  useEffect(() => {
-    dispatch(fetchDepartments());
-  }, [dispatch]);
-
-  const patients = useSelector(state => state.patients.entities)
-  useEffect(() => {
-    dispatch(fetchPatients());
-  }, [dispatch]);
-
-  const doctors = useSelector(state => state.doctors.entities)
-  useEffect(() => {
-    dispatch(fetchDoctors());
-  }, [dispatch]);
-
-  const results = useSelector(state => state.results.entities)
-  useEffect(() => {
-    dispatch(fetchResults());
-  }, [dispatch]);
   
+  const departments = useSelector(state => state.departments.entities)
+  const patients = useSelector(state => state.patients.entities)
+  const doctors = useSelector(state => state.doctors.entities)
+  const results = useSelector(state => state.results.entities)
+  const docAppointments = useSelector(state => state.appointments.entities)
+
   const filterPatients = () => {
     if(search === '' ){
       return patients
     } else {
-      console.log('filtering', search)
       return patients.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
     }
   }

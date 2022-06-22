@@ -12,7 +12,7 @@ class Patient < ApplicationRecord
 
   def permitted_emails
     unless email.match?(/gmail.com|yahoo.com|icloud.com/)
-        errors.add("Sorry, that email isn't permitted. Must be gmail, yahoo, or icloud.")
+        errors.add(:permitted_emails, ": Sorry, that email isn't permitted. Must be gmail, yahoo, or icloud.")
     end
   end 
 
