@@ -9,7 +9,7 @@ class Doctor < ApplicationRecord
   validates :name, presence: true
   validate :permitted_email
 
-  def permitted_emails
+  def permitted_email
       unless email.match?(/flatironmed.edu/)
           errors.add(:permitted_emails, ": Must have a Flatiron Med email.")
       end

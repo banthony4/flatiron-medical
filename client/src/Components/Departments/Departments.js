@@ -32,15 +32,6 @@ const Departments = ({ departments, setDept }) => {
         <h3 className='dept' onClick={() => handleClick(departments[7])}>{<FaMicroscope />} {departments[7].name}  </h3>
         <h3 className='dept' onClick={() => handleClick(departments[8])}>{<GiLoveInjection />} {departments[8].name} </h3>
         <h3 className='dept' onClick={() => handleClick(departments[9])}>{<FaBrain />} {departments[9].name} </h3>
-        {/* <div className='column'>
-          {departments.map(dept => {
-            return (
-              <div className='first' key={dept.id} onClick={() => navigate(`/departments/${dept.id}`)}>
-                {dept.name}
-              </div>
-            )
-          })}
-        </div> */}
       </div>
     </div>
   )

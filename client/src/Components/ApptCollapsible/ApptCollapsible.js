@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './ApptCollapsible.css'
 
 const ApptCollapsible = ({ appt }) => {
+  console.log('appt: ', appt);
   const [expand, setExpand] = useState(false)
 
   const handleClick = () => {

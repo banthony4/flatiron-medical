@@ -41,6 +41,13 @@ function App() {
     .then(dispatch(fetchResults()))
   }, [dispatch]);
 
+  
+  const departments = useSelector(state => state.departments.entities)
+  const patients = useSelector(state => state.patients.entities)
+  const doctors = useSelector(state => state.doctors.entities)
+  const results = useSelector(state => state.results.entities)
+  const docAppointments = useSelector(state => state.appointments.entities)
+  
   useEffect(() => {
     if(user && !user.doc){
       setPatientAppts(docAppointments.filter(appt => appt.patient_id === user.id))
@@ -48,13 +55,7 @@ function App() {
     if(user && user.doc){
       setPatientNames(patients.map(p => ({id: p.id, text: p.name})))
     }
-  },[user])
-  
-  const departments = useSelector(state => state.departments.entities)
-  const patients = useSelector(state => state.patients.entities)
-  const doctors = useSelector(state => state.doctors.entities)
-  const results = useSelector(state => state.results.entities)
-  const docAppointments = useSelector(state => state.appointments.entities)
+  }, [user])
 
   const filterPatients = () => {
     if(search === '' ){
