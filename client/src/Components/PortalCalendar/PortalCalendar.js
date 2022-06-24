@@ -23,7 +23,7 @@ import {
 const PortalCalendar = ({ docAppointments, user, patientAppts, patients, patientNames }) => {
   const dispatch = useDispatch();
   const [currentView, setCurrentView ] = useState('Month')
-  const [currentDate, setCurrentDate ] = useState('2022-06-21')
+  const [currentDate, setCurrentDate ] = useState('2022-06-24')
   const [apptId, setApptId] = useState({})
 
 
@@ -70,7 +70,7 @@ const PortalCalendar = ({ docAppointments, user, patientAppts, patients, patient
         {...restProps}
       >
         <AppointmentForm.Label
-          text="patient"
+          text="Patient:"
           type="title"
         />
         <AppointmentForm.Select
@@ -82,7 +82,7 @@ const PortalCalendar = ({ docAppointments, user, patientAppts, patients, patient
         />
         <AppointmentForm.Label
           type="title"
-          text="patient"
+          text="Notes:"
         />
         <AppointmentForm.TextEditor
           value={appointmentData.notes}
